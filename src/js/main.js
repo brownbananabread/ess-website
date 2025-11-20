@@ -54,8 +54,13 @@ function highlightActiveNavLink() {
 
 // Load header and footer components
 document.addEventListener('DOMContentLoaded', async () => {
+  // Determine which header to load based on the current page
+  const path = window.location.pathname;
+  const pageName = path.split('/').pop().replace('.html', '') || 'index';
+  const headerPath = pageName === 'index' ? '/components/header-transparent.html' : '/components/header.html';
+
   await Promise.all([
-    loadComponent('header-placeholder', '/components/header.html'),
+    loadComponent('header-placeholder', headerPath),
     loadComponent('footer-placeholder', '/components/footer.html')
   ]);
 
