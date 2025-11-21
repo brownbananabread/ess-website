@@ -20,12 +20,9 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'src/index.html'),
         about: resolve(__dirname, 'src/about.html'),
-        pricing: resolve(__dirname, 'src/pricing.html'),
         blog: resolve(__dirname, 'src/blog.html'),
         'blog-detail': resolve(__dirname, 'src/blog-detail.html'),
         contact: resolve(__dirname, 'src/contact.html'),
-        login: resolve(__dirname, 'src/login.html'),
-        register: resolve(__dirname, 'src/register.html'),
       },
       output: {
         assetFileNames: (assetInfo) => {
@@ -54,7 +51,7 @@ export default defineConfig({
           }
 
           // Rewrite clean URLs to .html files
-          const cleanUrls = ['/about', '/pricing', '/blog', '/contact', '/login', '/register'];
+          const cleanUrls = ['/about', '/blog', '/contact'];
           if (cleanUrls.includes(req.url)) {
             req.url = `${req.url}.html`;
           }
@@ -70,7 +67,7 @@ export default defineConfig({
       closeBundle() {
         // After build, create directory structure for clean URLs
         const distDir = resolve(__dirname, 'dist');
-        const pages = ['about', 'pricing', 'blog', 'contact', 'login', 'register'];
+        const pages = ['about', 'blog', 'contact'];
 
         pages.forEach(page => {
           const htmlFile = path.join(distDir, `${page}.html`);
