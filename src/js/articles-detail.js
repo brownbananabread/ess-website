@@ -1,26 +1,26 @@
-import { getBlogBySlug } from './blog-data.js';
+import { getArticlesBySlug } from './articles-data.js';
 
 // Get the slug from the URL
 function getSlugFromUrl() {
   const path = window.location.pathname;
   const parts = path.split('/');
-  // Handle both /blog/slug and /blog/slug.html patterns
+  // Handle both /articles/slug and /articles/slug.html patterns
   const slug = parts[parts.length - 1].replace('.html', '');
   return slug;
 }
 
-// Render the blog post
-function renderBlogPost(post) {
+// Render the articles post
+function renderArticlesPost(post) {
   if (!post) {
-    // Blog post not found
-    document.getElementById('blog-content').innerHTML = `
+    // Articles post not found
+    document.getElementById('articles-content').innerHTML = `
       <section class="py-24 bg-gray-50">
         <div class="container mx-auto px-4">
           <div class="max-w-3xl mx-auto text-center">
             <h1 class="text-4xl font-semibold text-gray-900 mb-4">Article Not Found</h1>
             <p class="text-lg text-gray-700 mb-8">Sorry, we couldn't find the article you're looking for.</p>
-            <a href="/blog" class="inline-flex py-3 px-6 items-center justify-center text-lg font-medium text-white bg-blue-500 hover:bg-blue-600 rounded-full transition duration-200">
-              Back to Blog
+            <a href="/articles" class="inline-flex py-3 px-6 items-center justify-center text-lg font-medium text-white bg-blue-500 hover:bg-blue-600 rounded-full transition duration-200">
+              Back to Articles
             </a>
           </div>
         </div>
@@ -32,18 +32,18 @@ function renderBlogPost(post) {
   // Update page title
   document.title = `${post.title} - Eternal Safety Solutions`;
 
-  // Render the blog post content
-  document.getElementById('blog-content').innerHTML = `
+  // Render the articles post content
+  document.getElementById('articles-content').innerHTML = `
     <section class="relative py-12 lg:py-24 bg-blue-900 overflow-hidden">
       <img class="absolute top-0 right-0" src="/assets/quantam-assets/pricing/waves-right-top.png" alt=""/>
       <div class="container mx-auto px-4 relative">
         <div class="max-w-4xl mx-auto">
           <div class="mb-6">
-            <a href="/blog" class="inline-flex items-center text-white hover:text-blue-200 transition duration-200">
+            <a href="/articles" class="inline-flex items-center text-white hover:text-blue-200 transition duration-200">
               <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
               </svg>
-              Back to Blog
+              Back to Articles
             </a>
           </div>
           <div class="mb-6">
@@ -75,7 +75,7 @@ function renderBlogPost(post) {
 
           <div class="mt-12 pt-8 border-t border-gray-200">
             <div class="flex items-center justify-between">
-              <a href="/blog" class="inline-flex items-center text-blue-500 hover:text-blue-600 font-medium transition duration-200">
+              <a href="/articles" class="inline-flex items-center text-blue-500 hover:text-blue-600 font-medium transition duration-200">
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                 </svg>
@@ -117,9 +117,9 @@ function renderBlogPost(post) {
   `;
 }
 
-// Initialize the blog detail page
+// Initialize the articles detail page
 document.addEventListener('DOMContentLoaded', () => {
   const slug = getSlugFromUrl();
-  const post = getBlogBySlug(slug);
-  renderBlogPost(post);
+  const post = getArticlesBySlug(slug);
+  renderArticlesPost(post);
 });

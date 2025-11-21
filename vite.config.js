@@ -20,8 +20,8 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'src/index.html'),
         about: resolve(__dirname, 'src/about.html'),
-        blog: resolve(__dirname, 'src/blog.html'),
-        'blog-detail': resolve(__dirname, 'src/blog-detail.html'),
+        articles: resolve(__dirname, 'src/articles.html'),
+        'articles-detail': resolve(__dirname, 'src/articles-detail.html'),
         contact: resolve(__dirname, 'src/contact.html'),
       },
       output: {
@@ -51,14 +51,14 @@ export default defineConfig({
           }
 
           // Rewrite clean URLs to .html files
-          const cleanUrls = ['/about', '/blog', '/contact'];
+          const cleanUrls = ['/about', '/articles', '/contact'];
           if (cleanUrls.includes(req.url)) {
             req.url = `${req.url}.html`;
           }
 
-          // Handle blog detail routes (e.g., /blog/slug -> /blog-detail.html)
-          if (req.url.startsWith('/blog/') && !req.url.includes('.')) {
-            req.url = '/blog-detail.html';
+          // Handle articles detail routes (e.g., /articles/slug -> /articles-detail.html)
+          if (req.url.startsWith('/articles/') && !req.url.includes('.')) {
+            req.url = '/articles-detail.html';
           }
 
           next();
@@ -67,7 +67,7 @@ export default defineConfig({
       closeBundle() {
         // After build, create directory structure for clean URLs
         const distDir = resolve(__dirname, 'dist');
-        const pages = ['about', 'blog', 'contact'];
+        const pages = ['about', 'articles', 'contact'];
 
         pages.forEach(page => {
           const htmlFile = path.join(distDir, `${page}.html`);
@@ -85,11 +85,11 @@ export default defineConfig({
           }
         });
 
-        // Create blog detail pages structure
-        const blogDetailFile = path.join(distDir, 'blog-detail.html');
-        if (fs.existsSync(blogDetailFile)) {
-          // List of blog slugs - should match the slugs in blog-data.js
-          const blogSlugs = [
+        // Create articles detail pages structure
+        const articlesDetailFile = path.join(distDir, 'articles-detail.html');
+        if (fs.existsSync(articlesDetailFile)) {
+          // List of articles slugs - should match the slugs in articles-data.js
+          const articlesSlugs = [
             'understanding-new-whs-regulations-2024',
             'achieving-iso-45001-certification',
             '5-common-workplace-hazards',
@@ -101,13 +101,13 @@ export default defineConfig({
             'iso-14001-environmental-management-explained'
           ];
 
-          blogSlugs.forEach(slug => {
-            const slugDir = path.join(distDir, 'blog', slug);
+          articlesSlugs.forEach(slug => {
+            const slugDir = path.join(distDir, 'articles', slug);
             if (!fs.existsSync(slugDir)) {
               fs.mkdirSync(slugDir, { recursive: true });
             }
             const targetFile = path.join(slugDir, 'index.html');
-            fs.copyFileSync(blogDetailFile, targetFile);
+            fs.copyFileSync(articlesDetailFile, targetFile);
           });
         }
       },

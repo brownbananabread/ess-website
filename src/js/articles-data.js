@@ -1,5 +1,5 @@
-// Blog posts data
-export const blogPosts = [
+// Articles posts data
+export const articlesPosts = [
   {
     id: 1,
     slug: 'understanding-new-whs-regulations-2024',
@@ -383,22 +383,22 @@ export const blogPosts = [
   }
 ];
 
-// Get blog post by slug
-export function getBlogBySlug(slug) {
-  return blogPosts.find(post => post.slug === slug);
+// Get articles post by slug
+export function getArticlesBySlug(slug) {
+  return articlesPosts.find(post => post.slug === slug);
 }
 
-// Get all blog posts
-export function getAllBlogs() {
-  return blogPosts;
+// Get all articles posts
+export function getAllArticless() {
+  return articlesPosts;
 }
 
-// Get featured blog posts
-export function getFeaturedBlogs() {
-  return blogPosts.filter(post => post.featured);
+// Get featured articles posts
+export function getFeaturedArticless() {
+  return articlesPosts.filter(post => post.featured);
 }
 
-// Get blogs by category
-export function getBlogsByCategory(categorySlug) {
-  return blogPosts.filter(post => post.categorySlug === categorySlug);
+// Get articless by category
+export function getArticlessByCategory(categorySlug) {
+  return articlesPosts.filter(post => post.categorySlug === categorySlug);
 }
