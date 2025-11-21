@@ -1,7 +1,7 @@
 <nav class="py-2 bg-transparent absolute top-0 left-0 right-0 z-40">
     <div class="container mx-auto px-4">
       <div class="relative flex items-center justify-between">
-        <a class="inline-block" href="/"><img class="h-20" src="assets/images/logo-primary.png" alt=""/></a>
+        <a class="inline-block" href="/"><img class="h-20" src="/assets/images/logo-primary.png" alt=""/></a>
         <ul class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 hidden md:flex">
           <li class="mr-8"><a class="inline-block text-white hover:text-blue-300 font-medium nav-link" href="about" data-page="about">About</a></li>
           <li class="mr-8"><a class="inline-block text-white hover:text-blue-300 font-medium nav-link" href="solutions" data-page="solutions">Solutions</a></li>
@@ -24,7 +24,7 @@
   <div class="hidden fixed top-0 left-0 bottom-0 w-full xs:w-5/6 xs:max-w-md z-50" :class="{'block': mobileNavOpen, 'hidden': !mobileNavOpen}">
     <div class="fixed inset-0 bg-violet-900 opacity-20" x-on:click="mobileNavOpen = !mobileNavOpen"></div>
     <nav class="relative flex flex-col py-7 px-10 w-full h-full bg-white overflow-y-auto">
-      <div class="flex items-center justify-between"><a class="inline-block" href="#"><img class="h-16" src="assets/images/logo-primary.png" alt=""/></a>
+      <div class="flex items-center justify-between"><a class="inline-block" href="/"><img class="h-16" src="/assets/images/logo-primary.png" alt=""/></a>
         <div class="flex items-center"><a class="inline-flex py-2.5 px-4 mr-6 items-center justify-center text-sm font-medium text-blue-900 hover:text-white border border-blue-900 hover:bg-blue-900 rounded-full transition duration-200" href="#">Login</a>
           <button x-on:click="mobileNavOpen = !mobileNavOpen">
             <svg width="32" height="32" viewbox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">

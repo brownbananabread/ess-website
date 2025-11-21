@@ -22,6 +22,7 @@ export default defineConfig({
         about: resolve(__dirname, 'src/about.html'),
         pricing: resolve(__dirname, 'src/pricing.html'),
         blog: resolve(__dirname, 'src/blog.html'),
+        'blog-detail': resolve(__dirname, 'src/blog-detail.html'),
         contact: resolve(__dirname, 'src/contact.html'),
         login: resolve(__dirname, 'src/login.html'),
         register: resolve(__dirname, 'src/register.html'),
@@ -58,6 +59,11 @@ export default defineConfig({
             req.url = `${req.url}.html`;
           }
 
+          // Handle blog detail routes (e.g., /blog/slug -> /blog-detail.html)
+          if (req.url.startsWith('/blog/') && !req.url.includes('.')) {
+            req.url = '/blog-detail.html';
+          }
+
           next();
         });
       },
@@ -81,6 +87,32 @@ export default defineConfig({
             fs.copyFileSync(htmlFile, targetFile);
           }
         });
+
+        // Create blog detail pages structure
+        const blogDetailFile = path.join(distDir, 'blog-detail.html');
+        if (fs.existsSync(blogDetailFile)) {
+          // List of blog slugs - should match the slugs in blog-data.js
+          const blogSlugs = [
+            'understanding-new-whs-regulations-2024',
+            'achieving-iso-45001-certification',
+            '5-common-workplace-hazards',
+            'building-proactive-safety-culture',
+            'essential-guide-whs-documentation',
+            'construction-site-safety-inspection-checklist',
+            'officer-due-diligence-legal-obligations',
+            'psychosocial-hazards-workplace',
+            'iso-14001-environmental-management-explained'
+          ];
+
+          blogSlugs.forEach(slug => {
+            const slugDir = path.join(distDir, 'blog', slug);
+            if (!fs.existsSync(slugDir)) {
+              fs.mkdirSync(slugDir, { recursive: true });
+            }
+            const targetFile = path.join(slugDir, 'index.html');
+            fs.copyFileSync(blogDetailFile, targetFile);
+          });
+        }
       },
     },
   ],
